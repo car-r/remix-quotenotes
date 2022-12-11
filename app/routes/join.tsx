@@ -18,6 +18,7 @@ export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
+  const pricingPlan = formData.get("pricingPlan");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
 
   if (!validateEmail(email)) {
@@ -54,7 +55,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const user = await createUser(email, password);
+  const user = await createUser(email, password, pricingPlan);
 
   return createUserSession({
     request,
@@ -142,7 +143,7 @@ export default function Join() {
               )}
             </div>
           </div>
-
+          <input type="hidden" name="pricingPlan" value={`free`} />
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <button
             type="submit"
