@@ -6,6 +6,7 @@ import * as React from "react";
 import { createUserSession, getUserId } from "~/session.server";
 import { verifyLogin } from "~/models/user.server";
 import { safeRedirect, validateEmail } from "~/utils";
+import LandingPageLayout from "~/components/Layouts/LandingPageLayout";
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
@@ -80,7 +81,9 @@ export default function LoginPage() {
   }, [actionData]);
 
   return (
-    <div className="flex min-h-full flex-col justify-center">
+    <>
+    <LandingPageLayout>
+    <div className="flex min-h-screen flex-col justify-center">
       <div className="mx-auto w-full max-w-md px-8">
         <Form method="post" className="space-y-6">
           <div>
@@ -175,5 +178,7 @@ export default function LoginPage() {
         </Form>
       </div>
     </div>
+    </LandingPageLayout>
+    </>
   );
 }
