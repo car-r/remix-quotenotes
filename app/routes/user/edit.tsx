@@ -1,7 +1,7 @@
 import { json, redirect } from "@remix-run/node";
 import type { LoaderFunction } from "@remix-run/node";
 import { Form, Link, useActionData, useLoaderData, useTransition } from "@remix-run/react";
-import { getUserById } from "~/models/user.server";
+import { getUserByEmail, getUserById } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
 import { prisma } from "~/db.server"
 import { useEffect, useRef } from "react";
@@ -66,6 +66,19 @@ export const action = async ({ request, params }: any) => {
               { errors: { email: "Email is invalid" } },
               { status: 400 }
             );
+        }
+
+        const existingUser = await getUserByEmail(email);
+        if (existingUser) {
+          return json(
+            {
+              errors: {
+                email: "A user already exists with this email",
+                password: null,
+              },
+            },
+            { status: 400 }
+          );
         }
     
         if (errors.email) {
