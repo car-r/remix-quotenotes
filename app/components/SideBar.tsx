@@ -8,7 +8,7 @@ export const loader = async ( {request}: any ) => {
 
 }
 
-export default function SideBar({toggle, isOpen}: any) {
+export default function Sidebar({toggle, isOpen}: any) {
     const data = useLoaderData()
     // console.log('sidebar data ->', data)
 
