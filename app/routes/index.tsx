@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+// import { Link } from "@remix-run/react";
 import HeroSection from "~/components/LandingPage/HeroSection";
 import NavBar from "~/components/LandingPage/NavBar";
 // import LandingPageLayout from "~/components/Layouts/LandingPageLayout";
