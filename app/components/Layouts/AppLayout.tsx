@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Footer from "../Footer";
 import NavBar from "../NavBar";
-import Sidebar from "../Sidebar";
+import Sidebar from "../SideBar";
 
 export default function AppLayout({children}: any) {
     const [isOpen, setIsOpen] = useState(false)
