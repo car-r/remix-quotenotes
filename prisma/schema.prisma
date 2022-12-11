@@ -10,11 +10,11 @@ generator client {
 model User {
   id    String @id @default(cuid())
   email String @unique
-  pricingPlan String @default("free")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  pricingPlan PricingPlan?
   password Password?
   notes    Note[]
   quotes   Quote[]
@@ -22,6 +22,13 @@ model User {
   book  Book[]
   quoteNote QuoteNote[]
   tag Tag[]
+}
+
+model PricingPlan {
+  plan String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
 }
 
 model Password {
