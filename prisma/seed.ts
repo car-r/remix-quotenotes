@@ -23,6 +23,7 @@ async function seed() {
           hash: hashedPassword,
         },
       },
+      pricingPlan: 'free'
     },
   });
 
@@ -34,6 +35,7 @@ async function seed() {
           hash: hashedPassword2,
         },
       },
+      pricingPlan: 'free'
     },
   });
 
