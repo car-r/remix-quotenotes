@@ -55,7 +55,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  const user = await createUser(email, password, pricingPlan);
+  const user = await createUser(email, password);
 
   return createUserSession({
     request,
@@ -143,7 +143,6 @@ export default function Join() {
               )}
             </div>
           </div>
-          <input type="hidden" name="pricingPlan" value={`free`} />
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <button
             type="submit"
