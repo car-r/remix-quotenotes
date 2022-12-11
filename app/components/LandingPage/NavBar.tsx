@@ -29,11 +29,11 @@ export default function NavBar({user}: any) {
                             ` hover:text-blue-400 ${isActive ? "text-blue-400" : ""}`
                             }
                         >
-                            Login
+                            Log In
                         </NavLink>
                         <Link to="/join" className="">
                             <button className="px-3 py-1 md:px-5 md:py-2 font-bold text-stone-900 rounded-sm border border-blue-400 bg-blue-400 transition-all ease-in-out hover:bg-blue-600 hover:border-blue-600 hover:text-white">
-                                Join
+                                Sign Up
                             </button>
                         </Link>
                     </>
