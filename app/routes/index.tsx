@@ -1,7 +1,7 @@
 // import { Link } from "@remix-run/react";
 import { prisma } from "~/db.server";
 import type { LoaderFunction } from "@remix-run/node";
-import { requireUserId } from "~/session.server";
+import { getUser, requireUserId } from "~/session.server";
 import type { Quote, Author } from "@prisma/client";
 import { Link, useLoaderData } from "@remix-run/react";
 import PageTitle from "~/components/PageTitle";
@@ -13,6 +13,7 @@ import BookHomeCard from "~/components/Books/BookHomeCard";
 import AddBookBtn from "~/components/Buttons/AddBookBtn";
 import AddAuthorBtn from "~/components/Buttons/AddAuthorBtn";
 import AuthorHomeCard from "~/components/Authors/AuthorHomeCard";
+import AppLayout from "~/components/Layouts/AppLayout";
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await requireUserId(request);
