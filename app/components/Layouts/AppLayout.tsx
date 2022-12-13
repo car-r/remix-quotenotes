@@ -17,9 +17,7 @@ export default function AppLayout({children}: any) {
                 <Side toggle={toggle} isOpen={isOpen}/>
                 <div className="w-full overflow-auto px-1">
                     {children}
-                </div>
-
-                
+                </div>                
             </div>
             <Footer />
         </div>

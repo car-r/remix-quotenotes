@@ -24,7 +24,8 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request, params }: LoaderArgs) {
+  console.log('params!',params)
   return json({
     user: await getUser(request),
   });
@@ -33,6 +34,7 @@ export async function loader({ request }: LoaderArgs) {
 export default function App() {
   const data = useLoaderData()
   console.log('root ->', data)
+
   return (
     <html lang="en" className="bg-stone-900 flex flex-col min-h-screen mx-auto">
       <head>
@@ -47,6 +49,7 @@ export default function App() {
             <Outlet />
           </AppLayout>
         }
+        {/* <Outlet /> */}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

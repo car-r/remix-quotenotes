@@ -8,17 +8,19 @@ import PageTitle from "~/components/PageTitle";
 import QuoteIndexCard from "~/components/Quotes/QuoteIndexCard";
 import { getSortedQuotes } from "~/models/quote.server";
 import { getTagsByGroup, getTagsWithQuotes } from "~/models/tag.server";
-import { requireUserId } from "~/session.server"
+import { getUser, requireUserId } from "~/session.server"
+import AppLayout from "~/components/Layouts/AppLayout";
 
 export const loader: LoaderFunction =async ({request}) => {
     const userId = await requireUserId(request)
+    // const user = await getUser(request)
 
     const quotes = await getSortedQuotes({userId})
     const tags = await getTagsByGroup({userId})
     const tagsWithQuotes = await getTagsWithQuotes({ userId })
 
 
-    return {quotes, tags, tagsWithQuotes}
+    return {quotes, tags, tagsWithQuotes, }
 }
 
 export type QuoteType = {

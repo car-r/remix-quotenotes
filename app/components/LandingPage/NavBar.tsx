@@ -1,7 +1,12 @@
-import { Link, NavLink } from "@remix-run/react";
+
+import { Link, NavLink, } from "@remix-run/react";
+
+
+
 
 export default function NavBar({user}: any) {
-    console.log(user)
+    console.log('navbar ->', user)
+    
     return (
         <>
             <nav className="flex items-center text-stone-200 py-6 justify-between w-full px-4 mx-auto max-w-5xl">

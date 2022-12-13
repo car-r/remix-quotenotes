@@ -1,11 +1,11 @@
 import { Form, Link, useLoaderData } from "@remix-run/react"
 import { requireUserId } from "~/session.server";
 
-export const loader = async ( {request}: any ) => {
-    const userId = await requireUserId(request);
-    return {userId}
+// export const loader = async ( {request}: any ) => {
+//     const userId = await requireUserId(request);
+//     return {userId}
 
-}
+// }
 
 export default function NavBar({toggle, isOpen}: any) {
     const data = useLoaderData()
