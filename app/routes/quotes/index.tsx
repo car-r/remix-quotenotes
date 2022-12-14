@@ -1,4 +1,4 @@
-import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+import { LoaderFunction, ActionFunction, redirect } from "@remix-run/node";
 import type { Quote, Tag } from "@prisma/client";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
@@ -6,12 +6,12 @@ import AddQuoteBtn from "~/components/Buttons/AddQuoteBtn";
 import FirstQuoteBtn from "~/components/Buttons/FirstQuoteBtn";
 import PageTitle from "~/components/PageTitle";
 import QuoteIndexCard from "~/components/Quotes/QuoteIndexCard";
-import { getSortedQuotes } from "~/models/quote.server";
+import { getSortedQuotes, updateQuoteFavorite } from "~/models/quote.server";
 import { getTagsByGroup, getTagsWithQuotes } from "~/models/tag.server";
 import { getUser, requireUserId } from "~/session.server"
-import AppLayout from "~/components/Layouts/AppLayout";
 
-export const loader: LoaderFunction =async ({request}) => {
+
+export const loader: LoaderFunction = async ({request}) => {
     const userId = await requireUserId(request)
     // const user = await getUser(request)
 
@@ -21,6 +21,22 @@ export const loader: LoaderFunction =async ({request}) => {
 
 
     return {quotes, tags, tagsWithQuotes, }
+}
+
+export const action: ActionFunction = async ({request}) => {
+    const userId = await requireUserId(request);
+    const form = await request.formData()
+    const id = form.get('id') as string
+    const isFavorited = form.get('isFavorited') as string
+    // console.log(id + isFavorited)
+
+    // await prisma.quote.update({
+    //     where: { id: id },
+    //     data: { isFavorited: isFavorited }
+    // })
+
+    await updateQuoteFavorite({ userId, id, isFavorited})
+    return redirect('/quotes')
 }
 
 export type QuoteType = {

@@ -12,7 +12,7 @@ import {
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
-import AppLayout from "./components/Layouts/AppLayout";
+// import AppLayout from "./components/Layouts/AppLayout";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -24,8 +24,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export async function loader({ request, params }: LoaderArgs) {
-  console.log('params!',params)
+export async function loader({ request }: LoaderArgs) {
   return json({
     user: await getUser(request),
   });
@@ -42,14 +41,14 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-      {!data.user ? 
+      {/* {!data.user ? 
           <Outlet />
           :
           <AppLayout>
             <Outlet />
           </AppLayout>
-        }
-        {/* <Outlet /> */}
+        } */}
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

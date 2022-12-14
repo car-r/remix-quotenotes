@@ -17,13 +17,14 @@ export default function User() {
     const user = useLoaderData()
     console.log(user)
     return (
-
+        <AppLayout>
             <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
                 <PageTitle children={`Your account`} btn={<EditUserBtn />}/>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <Outlet />
                 </div>
             </div>
+        </AppLayout>    
 
     )
 }
