@@ -14,9 +14,11 @@ import AddBookBtn from "~/components/Buttons/AddBookBtn";
 import AddAuthorBtn from "~/components/Buttons/AddAuthorBtn";
 import AuthorHomeCard from "~/components/Authors/AuthorHomeCard";
 import AppLayout from "~/components/Layouts/AppLayout";
+import { getUserById } from "~/models/user.server";
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await requireUserId(request);
+  const user = await getUserById(userId)
   const userData = await prisma.user.findUnique({
     where: {id: userId},
     include: {
@@ -56,7 +58,7 @@ export const loader: LoaderFunction = async ({request}) => {
       quoteNote: true,
     }
   })
-  return {userData}
+  return {userData, user}
 }
 
 export type Book = {
@@ -73,6 +75,7 @@ export default function Index() {
   console.log('index page ->', data)
   return (
     <>
+      <AppLayout>
       <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
         <PageTitle children={`Dashboard`}/>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-28">
@@ -144,6 +147,7 @@ export default function Index() {
           </div>
         </div>
       </div>
+      </AppLayout>
     </>
   );
 }

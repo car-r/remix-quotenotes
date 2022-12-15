@@ -1,12 +1,13 @@
 
-import { Link, NavLink, } from "@remix-run/react";
+import { Link, NavLink, useLoaderData, useOutletContext } from "@remix-run/react";
 
 
 
 
-export default function NavBar({user}: any) {
-    console.log('navbar ->', user)
-    
+
+export default function NavBar() {
+    const user: any = useOutletContext()
+    console.log('landingNav ->', user)
     return (
         <>
             <nav className="flex items-center text-stone-200 py-6 justify-between w-full px-4 mx-auto max-w-5xl">
@@ -21,28 +22,19 @@ export default function NavBar({user}: any) {
                     >
                         Blog
                     </NavLink> */}
-                    {user ? 
-                    <Link to="/notes" className="">
+                    <NavLink to="/login"
+                        className={({ isActive }) =>
+                        ` hover:text-blue-400 ${isActive ? "text-blue-400" : ""}`
+                        }
+                    >
+                        Log In
+                    </NavLink>
+                    <Link to="/join" className="">
                         <button className="px-3 py-1 md:px-5 md:py-2 font-bold text-stone-900 rounded-sm border border-blue-400 bg-blue-400 transition-all ease-in-out hover:bg-blue-600 hover:border-blue-600 hover:text-white">
-                            Dashboard
+                            Sign Up
                         </button>
                     </Link>
-                    :
-                    <>
-                        <NavLink to="/login"
-                            className={({ isActive }) =>
-                            ` hover:text-blue-400 ${isActive ? "text-blue-400" : ""}`
-                            }
-                        >
-                            Log In
-                        </NavLink>
-                        <Link to="/join" className="">
-                            <button className="px-3 py-1 md:px-5 md:py-2 font-bold text-stone-900 rounded-sm border border-blue-400 bg-blue-400 transition-all ease-in-out hover:bg-blue-600 hover:border-blue-600 hover:text-white">
-                                Sign Up
-                            </button>
-                        </Link>
-                    </>
-                    }
+                    
                 </ul>
             </nav>
         </>
