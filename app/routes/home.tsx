@@ -16,13 +16,12 @@ export const meta: MetaFunction = () => ({
     charset: "utf-8",
     title: "QuoteNotes",
     viewport: "width=device-width,initial-scale=1",
-  });
+});
 
 
   
 export default function Home() {
-    const user = useOutletContext()
-    console.log('home ->', user)
+
     return (
         <>
             <div className="flex flex-col w-full">

@@ -1,4 +1,5 @@
-import { LoaderFunction, ActionFunction, redirect } from "@remix-run/node";
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import type { Quote, Tag } from "@prisma/client";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
@@ -8,12 +9,11 @@ import PageTitle from "~/components/PageTitle";
 import QuoteIndexCard from "~/components/Quotes/QuoteIndexCard";
 import { getSortedQuotes, updateQuoteFavorite } from "~/models/quote.server";
 import { getTagsByGroup, getTagsWithQuotes } from "~/models/tag.server";
-import { getUser, requireUserId } from "~/session.server"
+import { requireUserId } from "~/session.server"
 
 
 export const loader: LoaderFunction = async ({request}) => {
     const userId = await requireUserId(request)
-    // const user = await getUser(request)
 
     const quotes = await getSortedQuotes({userId})
     const tags = await getTagsByGroup({userId})
@@ -28,12 +28,6 @@ export const action: ActionFunction = async ({request}) => {
     const form = await request.formData()
     const id = form.get('id') as string
     const isFavorited = form.get('isFavorited') as string
-    // console.log(id + isFavorited)
-
-    // await prisma.quote.update({
-    //     where: { id: id },
-    //     data: { isFavorited: isFavorited }
-    // })
 
     await updateQuoteFavorite({ userId, id, isFavorited})
     return redirect('/quotes')
@@ -102,7 +96,6 @@ export default function QuotesIndex() {
                             <Link to={`/quotes/tags/${tag.body}`} key={tag.body}>
                                 <div className="items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer bg-stone-800 hover:bg-stone-700">
                                     <p  className="">{tag.body}</p>
-                                    {/* <p>{tag.id}</p> */}
                                 </div>
                             </Link>
                         ))}
@@ -110,9 +103,6 @@ export default function QuotesIndex() {
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mb-1">
-                    {/* {data.quotes.map((quote: any) => (
-                        <QuoteIndexCard quote={quote} key={quote.id}/>
-                    ))} */}
                     {filteredSearch.map((quote: QuoteType) => (
                         <QuoteIndexCard quote={quote} key={quote.id}/>
                     ))}
