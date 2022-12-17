@@ -1,7 +1,7 @@
 // import { Link } from "@remix-run/react";
 import { prisma } from "~/db.server";
 import type { LoaderFunction } from "@remix-run/node";
-import { getUser, requireUserId } from "~/session.server";
+import { requireUserId } from "~/session.server";
 import type { Quote, Author } from "@prisma/client";
 import { Link, useLoaderData } from "@remix-run/react";
 import PageTitle from "~/components/PageTitle";
@@ -124,7 +124,12 @@ export default function Index() {
         </div>
         <div className="pb-28 flex flex-col">
           <div>
-            <SectionTitle children={'Books'} btn={<AddBookBtn />}/>
+            {data.userData._count.books < 1 ? 
+              <SectionTitle children={'Books'} btn={<FirstQuoteBtn />}/>
+              :
+              <SectionTitle children={'Books'} btn={<AddBookBtn />}/>
+            }
+            
             <div className="flex overflow-auto pb-6 snap-x scrollbar-thin scrollbar-track-stone-800 scrollbar-thumb-stone-700 p-1 gap-4 ">
               {data.userData.book.map((book: Book) => (
                 <Link to={`/books/${book.id}`} key={book.id} className="flex">
