@@ -1,16 +1,9 @@
 import { Form, Link, useLoaderData } from "@remix-run/react"
-import { requireUserId } from "~/session.server";
-
-// export const loader = async ( {request}: any ) => {
-//     const userId = await requireUserId(request);
-//     return {userId}
-
-// }
 
 export default function NavBar({toggle, isOpen}: any) {
     const data = useLoaderData()
-    console.log('navbar data ->', data)
-    console.log((data.user === null ? 'true' : 'false'))
+    // console.log('navbar data ->', data)
+    // console.log((data.user === null ? 'true' : 'false'))
 
     const links = [
         {title: 'Quotes', route: '/quotes', icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
