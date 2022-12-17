@@ -32,6 +32,20 @@ export async function deleteUserByEmail(email: User["email"]) {
   return prisma.user.delete({ where: { email } });
 }
 
+export async function getUserWithBookAndAuthor(id: User["id"]) {
+  return prisma.user.findUnique({ where: { id },
+    include: {
+      book: true,
+      authors: true,
+      _count: {
+        select: {
+          quotes: true
+        }
+      }
+    }
+  });
+}
+
 export async function verifyLogin(
   email: User["email"],
   password: Password["hash"]
