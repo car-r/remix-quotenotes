@@ -69,12 +69,9 @@ export const action: ActionFunction = async ({ request, params }) => {
 export default function EditQuote() {
     const quote = useLoaderData()
     const actionData = useActionData()
-    // const [edit, setEdit]: any = useOutletContext()
 
-    
     return (
         <div className="md:col-span-2">
-            {/* <EditQuoteCard quote={quote} actionData={actionData} setEdit={setEdit} edit={edit}  /> */}
             <EditQuoteCard quote={quote} actionData={actionData}  />
         </div>
     )

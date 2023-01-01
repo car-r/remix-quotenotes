@@ -3,9 +3,6 @@ import { useEffect, useRef } from "react";
 import PrimaryActionBtn from "../Buttons/PrimaryActionBtn";
 import ActionDataError from "../Forms/ActionDataError";
 
-
-
-
 export default function AddNoteCard({quote, actionData}: any) {
     // console.log(actionData)
     let transition = useTransition()
@@ -16,13 +13,6 @@ export default function AddNoteCard({quote, actionData}: any) {
     // let formRef = useRef()
     const formRef = useRef<HTMLFormElement>(null)
 
-    // useEffect(() => {
-    //     if (!isAddingNote) {
-    //         formRef.current?.reset();
-    //     } else if (isAddingNote) {
-    //         setEdit(false)
-    //     }
-    // },[isAddingNote, setEdit])
 
     useEffect(() => {
         if (!isAddingNote) {

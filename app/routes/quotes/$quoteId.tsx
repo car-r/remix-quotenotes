@@ -1,8 +1,6 @@
 import { Outlet, useActionData, useCatch, useLoaderData, useParams } from "@remix-run/react";
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-// import { useState } from "react";
 import PageTitle from "~/components/PageTitle";
-// import QuoteBackBtn from "~/components/Buttons/QuoteBackBtn";
 import SectionTitle from "~/components/SectionTitle";
 
 import { prisma } from "~/db.server";
@@ -205,33 +203,25 @@ export const action: ActionFunction = async ({ request, params }) => {
             data: { isFavorited: isFavorited }
         })
         return redirect(`/quotes/${id}`)
-    }
-
-    
+    } 
 }
 
 
 export default function QuoteDetail() {
     const quote = useLoaderData()
     const actionData = useActionData() as ActionData
-    // const [edit, setEdit] = useState(false)
 
     console.log('quoteId route --> ', quote)
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
             <PageTitle children={`Quote`} btn={<EditQuoteBtn  data={quote} />}/>
-            {/* <PageTitle children={`Quote`} btn={<EditQuoteBtn  data={quote} edit={edit} setEdit={setEdit}/>}/> */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                {/* <Outlet context={ [edit, setEdit] }/> */}
                 <Outlet />
                 <div className="flex flex-col gap-6">
-                    {/* <AddNoteCard quote={quote} actionData={actionData} setEdit={setEdit}/> */}
-                    {/* <QuoteTags quote={quote} actionData={actionData} setEdit={setEdit}/> */}
                     <AddNoteCard quote={quote} actionData={actionData} />
                     <QuoteTags quote={quote} actionData={actionData} />
                 </div>
             </div>
-            {/* <Outlet /> */}
             <div className="mt-20 mb-28">
                 <SectionTitle children={"Notes"}/>
                 <QuoteNoteGrid quote={quote}/>

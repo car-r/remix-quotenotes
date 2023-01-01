@@ -11,7 +11,7 @@ export const loader: LoaderFunction = async ({request}) => {
     return {user}
 }
 
-export default function Quotes() {
+export default function Books() {
 
     return (
         <>
