@@ -171,7 +171,7 @@ export default function BookIdRoute() {
                     </Link>
                     {data.tags?.map((tag: Tag) => (
                         <NavLink to={`/books/${data.data.id}/tags/${tag.body}`} key={tag.body} className={({ isActive }) =>
-                        ` items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer bg-stone-800 hover:bg-stone-700 ${isActive ? "bg-stone-300 text-stone-800 hover:bg-stone-300 " : ""}`
+                        ` items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer hover:bg-stone-700 ${isActive ? "bg-stone-300 text-stone-800 hover:bg-stone-300 " : "bg-stone-800"}`
                         }>
                             <div >
                                 <p  className="">{tag.body}</p>
