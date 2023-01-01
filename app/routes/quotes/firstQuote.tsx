@@ -1,3 +1,4 @@
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
 import { useActionData, useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/server-runtime";
 // import BookCard from "~/components/BookCard";
@@ -6,7 +7,7 @@ import FirstQuoteForm from "~/components/Quotes/FirstQuoteForm";
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
 
-export const loader = async ({request}: any) => {
+export const loader: LoaderFunction = async ({request}) => {
     const userId = await requireUserId(request);
     const user = await prisma.user.findUnique({
         where: {id: userId},
@@ -22,12 +23,12 @@ export const loader = async ({request}: any) => {
     return {user}
 }
 
-export const action = async ({request}: any) => {
+export const action: ActionFunction = async ({request}) => {
     const form = await request.formData()
     const userId = await requireUserId(request);
-    const body = form.get('body')
-    const name = form.get('name')
-    const title = form.get('title')
+    const body = form.get('body') as string
+    const name = form.get('name') as string
+    const title = form.get('title') as string
     const pricingPlan = form.get('pricingPlan') as string
     const quoteCount = form.get('quoteCount')  || 0
     const bookCount = form.get('bookCount')  || 0
