@@ -5,13 +5,10 @@ import { prisma } from "~/db.server"
 import { requireUserId } from "~/session.server";
 import AuthorErrorBackBtn from "~/components/Buttons/AuthorErrorBackBtn"
 import AddBookBtn from "~/components/Buttons/AddBookBtn"
-import AddQuoteBtn from "~/components/Buttons/AddQuoteBtn"
-import React from "react"
 import type { LoaderFunction } from "@remix-run/node";
 import EditAuthorBtn from "~/components/Buttons/EditAuthorBtn";
 import AuthorRouteCard from "~/components/Authors/AuthorRouteCard";
 import BookHomeCard from "~/components/Books/BookHomeCard";
-import AddQuoteCard from "~/components/Quotes/AddQuoteCard";
 import QuoteSmallCard from "~/components/Quotes/QuoteSmallCard";
 
 export type Book = {
@@ -65,8 +62,6 @@ export const loader: LoaderFunction = async ({params, request}) => {
 
 export default function AuthorDetail() {
     const data = useLoaderData()
-    // const [edit, setEdit] = React.useState<ContextEditType | ContextSetEditType>()
-    // const [edit, setEdit] = useState(false)
     console.log('author detail route',data)
 
     return (
@@ -74,7 +69,7 @@ export default function AuthorDetail() {
             <PageTitle children={data.author.name} btn={<EditAuthorBtn  data={data} />}/>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 rounded-xl py-2 mb-20">
                 <AuthorRouteCard author={data}/>
-                <Outlet />
+                <Outlet context={data}/>
             </div>
             <div className="mb-28">
                 <SectionTitle children={'Books'} btn={<AddBookBtn />}/>
