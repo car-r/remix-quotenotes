@@ -71,7 +71,6 @@ export const action = async ({request}: any) => {
     const authorId = form.get('authorId')
     const quoteBody = form.get('body')
     const bookId = form.get('bookId')
-    const authorName = form.get('authorName')
     const pricingPlan = form.get('pricingPlan') as string
     const quoteCount = form.get('quoteCount')  || 0
 
@@ -108,7 +107,7 @@ export const action = async ({request}: any) => {
             return { errors, values }
         }
 
-        const fields = { authorId, body, userId, bookId, authorName }
+        const fields = { authorId, body, userId, bookId }
         await prisma.quote.create({ data: fields})
         return redirect(`/books/${bookId}`)
     }
@@ -194,7 +193,7 @@ export default function BookIdRoute() {
                             <textarea
                             name="body"
                             rows={3}
-                            className="min-w-xl mb-1 text-stone-800 rounded-md border-2 border-stone-800 py-2 px-3 text-lg"
+                            className="min-w-xl mb-1 text-stone-800 rounded-md border-2 border-stone-800 py-2 px-3 text-base"
                             />
                             {actionData?.errors.body && (
                                 <p className="text-red-400 text-sm">{actionData.errors.body}</p>
