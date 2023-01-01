@@ -1,63 +1,93 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData } from "@remix-run/react";
-import invariant from "tiny-invariant";
+import { Outlet, useCatch, useLoaderData, useParams } from "@remix-run/react"
+import { redirect } from "@remix-run/server-runtime"
+import EditNoteBtn from "~/components/Buttons/EditNoteBtn"
+import QuoteNoteDeleteCard from "~/components/Notes/QuoteNoteDeleteCard"
+import QuoteNoteQuoteCard from "~/components/Notes/QuoteNoteQuoteCard"
+import PageTitle from "~/components/PageTitle"
+import { prisma } from "~/db.server"
 
-import { deleteNote, getNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+export const loader = async ({params}: any) => {
+    const data = await prisma.quoteNote.findUnique({
+        where: {id: params.quoteNoteId},
+        include: {
+            quote: true,
+            author: true,
+            book: true,
+        }
+    })
 
-export async function loader({ request, params }: LoaderArgs) {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
-
-  const note = await getNote({ userId, id: params.noteId });
-  if (!note) {
-    throw new Response("Not Found", { status: 404 });
-  }
-  return json({ note });
+    if (!data) {
+        throw new Response("Can't find note.", {
+            status: 404,
+        })
+    }
+    
+    return {data}
 }
 
-export async function action({ request, params }: ActionArgs) {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+export const action = async ({ request, params }: any) => {
+    const note = await request.formData()
 
-  await deleteNote({ userId, id: params.noteId });
-
-  return redirect("/notes");
+    if (note.get('_method') === 'delete') {
+        await prisma.quoteNote.delete({ 
+            where: { id: params.quoteNoteId }
+        })
+        return redirect(`/quoteNotes`)
+    }
 }
 
-export default function NoteDetailsPage() {
-  const data = useLoaderData<typeof loader>();
 
-  return (
-    <div>
-      <h3 className="text-2xl font-bold">{data.note.title}</h3>
-      <p className="py-6">{data.note.body}</p>
-      <hr className="my-4" />
-      <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Delete
-        </button>
-      </Form>
-    </div>
-  );
-}
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+export default function QuoteNoteId() {
+    const data = useLoaderData()
 
-  return <div>An unexpected error occurred: {error.message}</div>;
+    return (
+        <div className="flex flex-col pt-6 md:pt-10 md:max-w-5xl pb-6">
+            <PageTitle children={`Note`}  />
+
+            <div className="flex flex-col w-full md:grid md:grid-cols-3">
+
+                <div className="flex flex-col col-span-2 pb-4 md:pr-4">
+                    <Outlet />
+                </div>
+                <div className="flex flex-col gap-6 col-end-4 col-span-1">
+                    <QuoteNoteQuoteCard data={data}/>
+                    <QuoteNoteDeleteCard quoteNote={data}/>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export function CatchBoundary() {
-  const caught = useCatch();
+    const caught = useCatch();
+    const params = useParams();
+    if (caught.status === 404) {
+      return (
+        <div className="flex flex-col pt-6 md:pt-10 md:max-w-5xl pb-6">
+            <PageTitle children={`Note`}/>
+            <div className="flex flex-col w-full md:grid md:grid-cols-3">
+                <div className="flex flex-col col-span-2 pb-4 md:pr-4">
+                    <div className='flex flex-col justify-center p-10 border border-red-500 text-red-500 rounded-sm text-center w-full'>
+                        <p className="font-semibold tracking-wide">{`Can't find note ${params.quoteNoteId}`}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      );
+    }
+    throw new Error(`Unhandled error: ${caught.status}`);
+}
 
-  if (caught.status === 404) {
-    return <div>Note not found</div>;
-  }
-
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+export function ErrorBoundary({ error }: { error: Error }) {
+    console.error(error);
+  
+    return (
+        <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
+            <PageTitle children={`Note`}/>
+            <div className='flex flex-col max-w-xl justify-center py-10 px-6  border border-red-500 text-red-500 rounded-lg text-center'>
+                <p className="text-sm font-semibold tracking-wide">{`Looks like an error: ${error}`}</p>
+            </div>
+        </div>
+    );
 }
