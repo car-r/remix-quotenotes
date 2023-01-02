@@ -3,6 +3,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import Footer from "~/components/Footer";
+import Blog from "~/components/LandingPage/Blog";
 import FeaturesSection from "~/components/LandingPage/FeaturesSection";
 import HeroSection from "~/components/LandingPage/HeroSection";
 import NavBar from "~/components/LandingPage/NavBar";
@@ -30,6 +31,7 @@ export default function Home() {
                 <FeaturesSection />
                 <Pricing />
                 <Reviews />
+                <Blog />
                 <Footer />
             </div>
         </>
