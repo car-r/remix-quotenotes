@@ -3,6 +3,7 @@ import PageTitle from "~/components/PageTitle";
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
 import SectionTitle from "~/components/SectionTitle";
+import NoteSectionTitle from "~/components/NoteSectionTitle";
 
 export const loader = async ({request}: any) => {
     const userId = await requireUserId(request);
@@ -12,7 +13,14 @@ export const loader = async ({request}: any) => {
             book: {
                 include: {
                     quoteNote: true
-                }
+                },
+                orderBy: [
+                  {
+                    quoteNote: {
+                      _count: 'desc'
+                    }
+                  }
+                ]
             },
             _count: {
                 select: {
@@ -40,7 +48,8 @@ export default function NoteIndex() {
                 <div className="grid grid-cols-1 gap-4">
                     {data.book.map((book: any) => (
                         <div key={book.title} className="mb-16">
-                            <SectionTitle children={book.title}/>
+                            {/* <SectionTitle children={book.title}/> */}
+                            <NoteSectionTitle children={book.title}/>
                             <div className="flex overflow-auto pb-6 snap-x scrollbar-thin scrollbar-track-stone-800 scrollbar-thumb-stone-700">
                                 <div className="flex md:flex md:flex-row gap-4 mx-1">
                                     {book.quoteNote.map((note: any) => (  
