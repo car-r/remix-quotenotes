@@ -15,13 +15,13 @@ export default function NavBar() {
                     <p className="text-xl md:text-2xl font-extrabold hover:text-stone-100">QuoteNotes</p>
                 </Link>
                 <ul className="flex gap-4 md:gap-10 items-center text-sm md:text-base">
-                    {/* <NavLink to="/blog"
+                    <NavLink to="/blog"
                         className={({ isActive }) =>
                         ` hover:text-blue-400 ${isActive ? "text-blue-400" : ""}`
                         }
                     >
                         Blog
-                    </NavLink> */}
+                    </NavLink>
                     <NavLink to="/login"
                         className={({ isActive }) =>
                         ` hover:text-blue-400 ${isActive ? "text-blue-400" : ""}`
