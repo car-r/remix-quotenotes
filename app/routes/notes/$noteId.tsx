@@ -8,7 +8,7 @@ import { prisma } from "~/db.server"
 
 export const loader = async ({params}: any) => {
     const data = await prisma.quoteNote.findUnique({
-        where: {id: params.quoteNoteId},
+        where: {id: params.noteId},
         include: {
             quote: true,
             author: true,
@@ -43,7 +43,7 @@ export default function QuoteNoteId() {
 
     return (
         <div className="flex flex-col pt-6 md:pt-10 md:max-w-5xl pb-6">
-            <PageTitle children={`Note`}  />
+            <PageTitle children={`Note`}  btn={<EditNoteBtn data={data}/>}/>
 
             <div className="flex flex-col w-full md:grid md:grid-cols-3">
 

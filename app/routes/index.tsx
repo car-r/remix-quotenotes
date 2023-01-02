@@ -97,7 +97,7 @@ export default function Index() {
               <p className="text-4xl">{data.userData._count.authors}</p>
             </div>
           </Link>
-          <Link to="/quoteNotes">
+          <Link to="/notes">
             <div className="border-2 border-stone-800 p-4 rounded-xl hover:ring-2 hover:ring-blue-400 hover:text-stone-100">
               <p className="uppercase text-sm font-light tracking-wider">Notes</p>
               <p className="text-4xl">{data.userData._count.quoteNote}</p>
