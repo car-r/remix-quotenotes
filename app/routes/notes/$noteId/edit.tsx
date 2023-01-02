@@ -34,7 +34,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     // Action to delete quote
     if(form.get('_method') === 'delete') {
-        await prisma.quoteNote.delete({ where: { id: params.quoteNoteId}})
+        await prisma.quoteNote.delete({ where: { id: params.noteId}})
         return redirect(`/quotes/${quoteId}`)
     }
 
