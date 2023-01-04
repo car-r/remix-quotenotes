@@ -148,9 +148,9 @@ export default function BookIdRoute() {
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-6xl">
             <PageTitle children={book.title} btn={<EditBookBtn  data={data} />}/>
-            <div className="flex flex-col gap-6  md:flex-row">
-                <div className="flex gap-2 h-8 ">
-                    <label htmlFor="search" className="flex bg-stone-700 rounded-xl pl-2">
+            <div className="flex flex-col gap-6 md:flex-row">
+                <div className="flex gap-2 h-8">
+                    <label htmlFor="search" className="flex bg-stone-700 rounded-xl pl-2 w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mt-1 ">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
@@ -158,7 +158,7 @@ export default function BookIdRoute() {
                             type="text" 
                             onChange={(e) => handleChange(e)}
                             placeholder="search quotes"
-                            className="px-2 py-1 ml-1 w-full md:w-52  border border-stone-700 bg-stone-700 rounded-xl "
+                            className="px-2 py-1 ml-1 md:w-52  border border-stone-700 bg-stone-700 rounded-xl "
                             
                         />
                     </label>
@@ -184,7 +184,7 @@ export default function BookIdRoute() {
                 <div>
                     <Outlet context={[search]}/>
                 </div>
-                <div className="flex flex-col gap-6 order-first md:order-last md:ml-auto">
+                <div className="flex flex-col gap-6  md:order-last md:ml-auto">
                     <Form method="post" ref={formRef}
                         className="flex flex-col gap-4 border border-stone-800 bg-stone-800 p-4 rounded-md text-stone-300/60 font-light"
                     >
