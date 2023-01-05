@@ -83,13 +83,13 @@ export default function LoginPage() {
   return (
     <>
     <LandingPageLayout>
-    <div className="flex min-h-screen flex-col justify-center">
-      <div className="mx-auto w-full max-w-md px-8">
+    <div className="flex min-h-screen flex-col justify-center pb-32">
+      <div className="mx-auto w-full max-w-md px-4">
         <Form method="post" className="space-y-6">
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-stone-500"
             >
               Email address
             </label>
@@ -104,7 +104,7 @@ export default function LoginPage() {
                 autoComplete="email"
                 aria-invalid={actionData?.errors?.email ? true : undefined}
                 aria-describedby="email-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-stone-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.email && (
                 <div className="pt-1 text-red-700" id="email-error">
@@ -117,7 +117,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-stone-500"
             >
               Password
             </label>
@@ -153,16 +153,16 @@ export default function LoginPage() {
                 id="remember"
                 name="remember"
                 type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 rounded border-stone-300 text-blue-600 focus:ring-blue-500"
               />
               <label
                 htmlFor="remember"
-                className="ml-2 block text-sm text-gray-900"
+                className="ml-2 block text-xs sm:text-sm text-stone-600"
               >
                 Remember me
               </label>
             </div>
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-center text-xs sm:text-sm text-stone-500">
               Don't have an account?{" "}
               <Link
                 className="text-blue-500 underline"
