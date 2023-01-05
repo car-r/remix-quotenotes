@@ -12,7 +12,13 @@ export const loader = async ({request}: any) => {
         include: {
             book: {
                 include: {
-                    quoteNote: true
+                    quoteNote: {
+                        orderBy: [
+                            {
+                                createdAt: 'desc'
+                            }
+                        ]
+                    }
                 },
                 orderBy: [
                   {
@@ -36,7 +42,7 @@ export default function NoteIndex() {
     const data = useLoaderData()
     // const noteCount = data.length
     const noteCount = data._count.quoteNote
-    console.log('quotenoteindex ->', data)
+
     return (
         <>
             <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">

@@ -42,7 +42,6 @@ export default function EditQuoteCard({quote, actionData}: EditQuote) {
             formRef.current?.reset();
         } 
     },[isUpdating])
-    console.log('edit quote card props --> ', quote)
 
     return (
         <div className="flex flex-col gap-4 bg-stone-800 px-4 pb-4 md:px-10 md:py-6 rounded-xl md:w-full">
@@ -54,8 +53,8 @@ export default function EditQuoteCard({quote, actionData}: EditQuote) {
                     <div className="flex flex-col gap-4 md:gap-6">
                         <div className="flex justify-between">
                             <Link to={`/quotes/${quote.quote.id}`} className="hover:text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                                 </svg>
                             </Link>
                             <div onClick={() => setWillDelete(!willDelete)} className="flex justify-end relative hover:text-stone-100 hover:cursor-pointer">

@@ -20,7 +20,7 @@ export type Author = {
 
 export default function AuthorRouteCard({author}: Author) {
     // const [edit, setEdit] = useState(false)
-    console.log('authorroutecard', author)
+
     return (
         <div className="flex flex-col rounded-lg w-full items-center border-2 border-stone-800 h-72">
             <div className="bg-stone-800 h-28 w-full p-4 rounded-t-md">

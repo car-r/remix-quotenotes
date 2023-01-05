@@ -44,7 +44,7 @@ export const action: ActionFunction = async ({request, params}) => {
 export default function BookIdHome() {
     const data = useLoaderData()
     const book = data.data
-    console.log('bookId index --> ', data)
+
     const [search]: string = useOutletContext()
     const filteredSearch = book.quote.filter((quote: Quote) =>
         quote.body.toLowerCase().includes(search.toLowerCase())

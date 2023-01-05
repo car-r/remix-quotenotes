@@ -54,7 +54,6 @@ export default function NewBookCard({data, actionData}: NewBookCardType) {
         } 
     },[isAdding])
 
-    console.log('newbookcard', data)
     return (
         <div className="col-span-1">
             <Form method="post"

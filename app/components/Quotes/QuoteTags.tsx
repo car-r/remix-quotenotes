@@ -29,17 +29,8 @@ export default function QuoteTags({quote, actionData}: QuoteTagsType) {
         transition.state === "submitting" &&
         transition.submission.formData.get("_method") === "tag"
 
-    // let formRef = useRef()
     const formRef = useRef<HTMLFormElement>(null)
 
-    // useEffect(() => {
-    //     if (!isAddingTag) {
-    //         formRef.current?.reset();
-
-    //     } else if (isAddingTag) {
-    //         setEdit(false)
-    //     }
-    // },[isAddingTag, setEdit])
 
     useEffect(() => {
         if (!isAddingTag) {
@@ -47,7 +38,6 @@ export default function QuoteTags({quote, actionData}: QuoteTagsType) {
         } 
     },[isAddingTag])
 
-    console.log('quoteTags component -> ', quote)
 
     return (
         <div className="flex flex-col gap-1 bg-stone-800 px-4 pb-4 pt-1 rounded-lg max-w-3xl mb-4">

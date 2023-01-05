@@ -72,7 +72,7 @@ export type Book = {
 
 export default function Index() {
   const data = useLoaderData()
-  console.log('index page ->', data)
+
   return (
     <>
       <AppLayout>

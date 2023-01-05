@@ -71,7 +71,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 export default function EditNote() {
     const data = useLoaderData()
     const actionData = useActionData() as ActionData
-    console.log('NoteId edit data --> ', data)
     
     return (
         <div>

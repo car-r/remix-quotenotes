@@ -20,7 +20,6 @@ export default function AddNoteCard({quote, actionData}: any) {
         } 
     },[isAddingNote])
 
-    console.log('addnotecard', quote)
     
     return (
         <div className="p-4 bg-stone-800 rounded-lg">

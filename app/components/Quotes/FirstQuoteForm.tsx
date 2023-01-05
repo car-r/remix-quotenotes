@@ -21,7 +21,7 @@ export type FirstQuoteFormType = {
 }
 
 export default function FirstQuoteForm({actionData, data}: any) {
-    // console.log('first quote form', data)
+
     return (
         <div>
             <Form method="post"

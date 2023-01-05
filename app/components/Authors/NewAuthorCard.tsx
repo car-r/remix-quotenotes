@@ -19,7 +19,6 @@ export default function NewAuthorCard({actionData}: any) {
         } 
     },[isAdding])
     
-    console.log(actionData)
     return (
         <div>
             <Form method="post"
@@ -43,7 +42,7 @@ export default function NewAuthorCard({actionData}: any) {
                     
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Image URL
+                            Author Image URL
                         </label>
                         {actionData?.errors.imgUrl ? (
                             <div className="flex flex-col">

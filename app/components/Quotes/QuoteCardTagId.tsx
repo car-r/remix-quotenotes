@@ -1,7 +1,7 @@
 import { Form, Link } from "@remix-run/react";
 
 export default function QuoteCardTagId({quote}: any) {
-    console.log('quoteCardTagId --> ', quote)
+
     return (
         <div key={quote.id} className="flex">
             <div className="p-4 border border-stone-800 bg-stone-800 rounded-md text-stone-300/60 hover:ring-2 hover:ring-blue-400 hover:text-stone-100">

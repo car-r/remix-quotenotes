@@ -10,7 +10,7 @@ export type Book = {
 }
 
 export default function BookCard({book}: Book) {
-    console.log('book card --> ', book)
+
     return (
         <div className="p-4 border border-stone-800 bg-stone-800 rounded-md hover:ring-2 hover:ring-blue-400 hover:text-stone-100">
             <div className="pb-2">

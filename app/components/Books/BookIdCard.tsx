@@ -25,7 +25,6 @@ const imageOnErrorHandler = (
 
 export default function BookIdCard({data}: Data) {
 
-    console.log('BookIdCard -> ', data)
     return (
         <div className="flex flex-col p-4 bg-stone-800 rounded-lg max-w-3xl md:max-w-sm">
             <div className="flex flex-col pb-3">
