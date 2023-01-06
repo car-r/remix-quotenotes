@@ -13,6 +13,9 @@ import type { Tag } from "@prisma/client";
 import ActionDataError from "~/components/Forms/ActionDataError"
 import BookIdCard from "~/components/Books/BookIdCard"
 import EditBookBtn from "~/components/Buttons/EditBookBtn"
+import SectionTitle from "~/components/SectionTitle"
+import QuoteNoteGrid from "~/components/Notes/QuoteNoteGrid"
+import { QuoteNote } from "~/models/quote.server"
 
 
 export const loader = async ({params, request}: any) => {
@@ -30,8 +33,14 @@ export const loader = async ({params, request}: any) => {
                         createdAt: 'desc'
                     }
                 ]
+            },
+            quoteNote: {
+                orderBy: [
+                    {
+                        createdAt: 'desc'
+                    }
+                ]
             }
-            
         }
     })
 
@@ -141,6 +150,7 @@ export default function BookIdRoute() {
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
     }
+    console.log(data)
 
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-6xl">
@@ -216,6 +226,18 @@ export default function BookIdRoute() {
                     <div>
                         <BookIdCard data={data}/>
                     </div>
+                </div>
+            </div>
+            <div className="mt-6 mb-28">
+                <SectionTitle children={"Notes"}/>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {data.data.quoteNote.map((note: any) => (
+                        <Link to={`/notes/${note.id}`} key={note.id} className="flex" >
+                            <div className='flex flex-col justify-center p-4 border border-stone-600 text-stone-300 rounded-sm hover:bg-stone-600 text-center w-full'>
+                                <p className="line-clamp-3 text-sm">{note.body}</p>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </div>

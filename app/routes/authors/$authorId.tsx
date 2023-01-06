@@ -62,7 +62,7 @@ export const loader: LoaderFunction = async ({params, request}) => {
 
 export default function AuthorDetail() {
     const data = useLoaderData()
-    console.log('author detail route',data)
+    // console.log('author detail route',data)
 
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
