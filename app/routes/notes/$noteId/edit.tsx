@@ -9,7 +9,7 @@ import EditNoteCard from "~/components/Notes/EditNoteCard";
 export const loader: LoaderFunction = async ({params, request}) => {
     const userId = await requireUserId(request);
     const data = await prisma.quoteNote.findFirst({
-        where: { userId: userId, id: params.quoteNoteId},
+        where: { userId: userId, id: params.noteId},
         include: {
             author: true,
             quote: true
