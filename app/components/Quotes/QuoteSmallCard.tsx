@@ -11,7 +11,7 @@ export type Quote = {
 
 
 export default function QuoteSmallCard({quote}: Quote) {
-    // console.log('quotecardsmall ->', quote)
+
     return (
         <div className="p-4 h-40 my-2 border border-stone-800 bg-stone-800 rounded-md text-stone-300/60 hover:ring-2 hover:ring-blue-400 hover:text-stone-100">
             <div className="flex flex-col min-h-full">

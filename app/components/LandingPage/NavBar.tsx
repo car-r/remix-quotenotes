@@ -1,16 +1,15 @@
 
-import { Link, NavLink, useLoaderData, useOutletContext } from "@remix-run/react";
+import { Link, NavLink } from "@remix-run/react";
 
 
 
 
 
 export default function NavBar() {
-    const user: any = useOutletContext()
-    console.log('landingNav ->', user)
+
     return (
         <>
-            <nav className="flex items-center text-stone-200 py-6 justify-between w-full px-2 sm:px-4 mx-auto max-w-5xl">
+            <nav className="flex items-center text-stone-200 py-6 justify-between w-full px-4 mx-auto max-w-5xl">
                 <Link to={'/'}>
                     <p className="text-lg sm:text-xl md:text-2xl font-extrabold hover:text-stone-100">QuoteNotes</p>
                 </Link>

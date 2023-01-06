@@ -1,6 +1,4 @@
 import { Link, useLoaderData } from "@remix-run/react"
-// import AddContentBtn from "~/components/Buttons/AddBookBtn"
-// import ContentCard from "~/components/BookCard"
 import PageTitle from "~/components/PageTitle"
 import { prisma } from "~/db.server"
 import { requireUserId } from "~/session.server";
@@ -24,7 +22,7 @@ export const loader = async ({request}: any) => {
 export default function BookIndex() {
     const data = useLoaderData()
     const bookCount = data.data.length
-    console.log(data, bookCount)
+
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
             {bookCount > 0 ?

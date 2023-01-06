@@ -10,8 +10,6 @@ const imageOnErrorHandler = (
 
 export default function QuoteCardLarge({quote}: any) {
 
-    // console.log('quotecardlarge -->', quote)
-
     return (
         <div className="md:col-span-2">
             <div className="p-4 md:p-10  border border-stone-800 bg-stone-800 rounded-md text-stone-300/60">

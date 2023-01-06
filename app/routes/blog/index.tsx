@@ -25,7 +25,7 @@ export async function loader() {
 
 export default function BlogIndex() {
     const posts = useLoaderData();
-    console.log('blog index ->', posts)
+
     return (
         <>
             <div className="prose md:prose-lg lg:prose-xl flex flex-col mx-auto max-w-4xl py-20 prose-img:mb-0 prose-img:mt-0 prose-a:no-underline">

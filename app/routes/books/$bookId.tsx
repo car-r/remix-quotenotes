@@ -31,6 +31,7 @@ export const loader = async ({params, request}: any) => {
                     }
                 ]
             }
+            
         }
     })
 
@@ -117,7 +118,7 @@ export const action = async ({request}: any) => {
 
 export default function BookIdRoute() {
     const params = useParams()
-    console.log('useParams ->', params)
+    
     const data = useLoaderData()
     let transition = useTransition()
     let isAdding = 
@@ -126,9 +127,6 @@ export default function BookIdRoute() {
 
     const formRef = useRef<HTMLFormElement>(null)
     const book = data.data
-
-    // console.log('bookId --> ', data)
-    // console.log('bookId book --> ', book)
 
     const actionData = useActionData()
 
@@ -144,7 +142,6 @@ export default function BookIdRoute() {
         setSearch(e.currentTarget.value)
     }
 
-    console.log('bookId route --> ', data)
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-6xl">
             <PageTitle children={book.title} btn={<EditBookBtn  data={data} />}/>

@@ -1,12 +1,8 @@
-import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import * as postA from "../../../public/blog/5-tips-to-remember-what-you-read.mdx"
-import * as postB from "../../../public/blog/how-to-tweet-a-book-review.mdx"
-import * as postC from "../../../public/blog/how-to-take-notes-on-a-book.mdx"
+
+import { Link } from "@remix-run/react";
 
 
 export default function Blog() {
-    console.log('blog landing ->')
     return (
         <>
             <div className="flex flex-col w-full py-36 bg-stone-900">
@@ -33,8 +29,8 @@ export default function Blog() {
                                 className="rounded-lg pb-4"
                             />
                             <div className="flex flex-col gap-2 mb-4">
-                                <p className="font-semibold text-lg text-blue-400">5 Tips on note taking while reading</p>
-                                <p className="text-base text-stone-200 font-light">Taking notes while reading is difficult to do if you don't know how to do it. Here are 5 tips on improving your note taking skills.</p>
+                                <p className="font-semibold text-lg text-blue-400">How to Tweet a Book Review</p>
+                                <p className="text-base text-stone-200 font-light">Tweeting book summaries is a great way to gain followers on social media and communicate information. Using QuoteNotes makes this task a breeze!</p>
                             </div>
                             <div className="flex gap-1 items-center mt-auto text-blue-400">
                                 <p>Read more</p>
@@ -48,8 +44,8 @@ export default function Blog() {
                                 className="rounded-lg pb-4"
                             />
                             <div className="flex flex-col gap-2 mb-4">
-                                <p className="font-semibold text-lg text-blue-400">5 Tips on note taking while reading</p>
-                                <p className="text-base text-stone-200 font-light">Taking notes while reading is difficult to do if you don't know how to do it. Here are 5 tips on improving your note taking skills.</p>
+                                <p className="font-semibold text-lg text-blue-400">How to Take Notes On a Book</p>
+                                <p className="text-base text-stone-200 font-light">Taking notes on a book can be a painful process, but now you can digitize them easily and efficiently!</p>
                             </div>
                             <div className="flex gap-1 items-center mt-auto text-blue-400">
                                 <p>Read more</p>

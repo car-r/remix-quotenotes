@@ -32,7 +32,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function App() {
   const data = useLoaderData()
-  console.log('root ->', data)
+  // console.log('root ->', data)
 
   return (
     <html lang="en" className="bg-stone-900 flex flex-col min-h-screen mx-auto">
@@ -41,13 +41,6 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-      {/* {!data.user ? 
-          <Outlet />
-          :
-          <AppLayout>
-            <Outlet />
-          </AppLayout>
-        } */}
         <Outlet />
         <ScrollRestoration />
         <Scripts />

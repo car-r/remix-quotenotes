@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 
 export default function QuoteNoteQuoteCard({data}: any) {
-    console.log('quote note quote card -->', data)
+
     return (
         <div className="p-4  border border-stone-800 bg-stone-800 rounded-md hover:border-blue-400 hover:text-stone-100">
             <Link to={`/quotes/${data.data.quote.id}`}>
