@@ -40,7 +40,7 @@ export const action = async ({ request, params }: any) => {
 
 export default function QuoteNoteId() {
     const data = useLoaderData()
-    console.log(data)
+
     return (
         <div className="flex flex-col pt-6 md:pt-10 md:max-w-5xl pb-6">
             <PageTitle children={`Note`}  btn={<EditNoteBtn data={data}/>}/>

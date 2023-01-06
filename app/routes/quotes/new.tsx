@@ -122,8 +122,6 @@ export default function NewQuote() {
             }
         }
     }
-
-    console.log('new quote --> ',data)
     
     return (
         <div className="flex flex-col pt-6 md:pt-10 md:max-w-5xl pb-6">

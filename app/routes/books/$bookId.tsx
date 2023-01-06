@@ -150,7 +150,6 @@ export default function BookIdRoute() {
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
     }
-    console.log(data)
 
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-6xl">

@@ -60,9 +60,7 @@ export default function QuotesIndex() {
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
     }
-    console.log('search state 2->', search)
 
-    console.log('Quote Index data ->', data)
     return (
         <>
             <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
