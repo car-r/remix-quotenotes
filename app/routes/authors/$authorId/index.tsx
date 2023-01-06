@@ -47,7 +47,6 @@ export type Data = {
 export default function AuthorIdHome() {
     const data = useLoaderData()
 
-    console.log('authId index', data)
     return (
         <div>
             <AuthorRouteStatsCard data={data}/>

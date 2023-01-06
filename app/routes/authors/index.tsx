@@ -18,7 +18,7 @@ export const loader = async ({request}: any) => {
 export default function AuthorsIndex() {
     const authors = useLoaderData()
     const authorCount = authors.length
-    console.log(authors)
+
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
             {authorCount > 0 ? 

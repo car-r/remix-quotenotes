@@ -40,7 +40,7 @@ export default function EditNoteCard({data,  actionData}: EditNote) {
             formRef.current?.reset();
         }
     },[isUpdating])
-    console.log('editnote ->', data)
+
     return (
         <div className="md:col-span-2">
             <div className="flex flex-col gap-4 bg-stone-800 px-4 pb-4 rounded-xl md:w-full">
