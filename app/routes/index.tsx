@@ -15,6 +15,7 @@ import AddAuthorBtn from "~/components/Buttons/AddAuthorBtn";
 import AuthorHomeCard from "~/components/Authors/AuthorHomeCard";
 import AppLayout from "~/components/Layouts/AppLayout";
 import { getUserById } from "~/models/user.server";
+import FirstBookBtn from "~/components/Buttons/FirstBookBtn";
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await requireUserId(request);
@@ -124,10 +125,10 @@ export default function Index() {
         </div>
         <div className="pb-28 flex flex-col">
           <div>
-            {data.userData._count.books < 1 ? 
-              <SectionTitle children={'Books'} btn={<FirstQuoteBtn />}/>
+            {data.userData._count.authors < 1 ? 
+              <SectionTitle children={'Books'} btn={<FirstBookBtn />}/>
               :
-              <SectionTitle children={'Books'} btn={<AddBookBtn />}/>
+              <SectionTitle children={'Books'} btn={<FirstBookBtn />}/>
             }
             
             <div className="flex overflow-auto pb-6 snap-x scrollbar-thin scrollbar-track-stone-800 scrollbar-thumb-stone-700 p-1 gap-4 ">
