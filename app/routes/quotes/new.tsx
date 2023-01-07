@@ -16,7 +16,7 @@ export const action: ActionFunction = async ({request}) => {
     const form = await request.formData()
     const userId = await requireUserId(request);
     const authorId = form.get('authorId') as string
-    const body = form.get('body') as string
+    const quoteBody = form.get('body') as string
     const bookId = form.get('bookId') as string
     const pricingPlan = form.get('pricingPlan') as string
     const quoteCount = form.get('quoteCount')  || 0
@@ -25,6 +25,17 @@ export const action: ActionFunction = async ({request}) => {
 
     // const fields = { authorId, body, userId, bookId, authorName }
     // const fields = { authorId, body, userId, bookId }
+
+    let body = quoteBody.trim()
+    const isWrappedInQuotes = new RegExp('/^"(.*)"$/')
+
+    const validateisWrappedInQuotes = (value: string) => {
+        if (!isWrappedInQuotes.test(value)) {
+            return body = body.slice(1, -1 )
+        }
+    }
+
+    validateisWrappedInQuotes(body)
 
     const errors = {
         body: '',
