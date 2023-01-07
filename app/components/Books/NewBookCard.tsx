@@ -68,7 +68,7 @@ export default function NewBookCard({data, actionData}: NewBookCardType) {
                         null
                         }
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Title
+                            Title *
                         </label>
                         {actionData?.errors.title ? (
                             <div className="flex flex-col">
@@ -82,7 +82,7 @@ export default function NewBookCard({data, actionData}: NewBookCardType) {
 
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Author
+                            Author *
                         </label>
                         <select name="authorId" className="bg-stone-700 border border-stone-700 rounded-sm p-1" >
                             {data.authors.map((author: Author) => (
@@ -93,7 +93,7 @@ export default function NewBookCard({data, actionData}: NewBookCardType) {
                     
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Book Image URL
+                            Book Image URL *
                         </label>
                         {actionData?.errors.imgUrl ? (
                             <div className="flex flex-col">

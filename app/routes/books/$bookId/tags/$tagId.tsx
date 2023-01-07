@@ -13,7 +13,8 @@ export const loader: LoaderFunction = async ({request, params}) => {
             userId: userId,
             tag: {
                 some: { body: params.tagId}
-            }
+            },
+            bookId: params.bookId
         },
         include:{
             book: {

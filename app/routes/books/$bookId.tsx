@@ -1,4 +1,4 @@
-import { Form, NavLink, Outlet, useActionData, useCatch, useLoaderData, useParams, useTransition } from "@remix-run/react"
+import { Form, NavLink, Outlet, useActionData, useCatch, useLoaderData, useParams, useSearchParams, useTransition } from "@remix-run/react"
 import { Link } from "@remix-run/react"
 import { redirect } from "@remix-run/server-runtime"
 import { Response } from "@remix-run/web-fetch"
@@ -14,12 +14,12 @@ import ActionDataError from "~/components/Forms/ActionDataError"
 import BookIdCard from "~/components/Books/BookIdCard"
 import EditBookBtn from "~/components/Buttons/EditBookBtn"
 import SectionTitle from "~/components/SectionTitle"
-import QuoteNoteGrid from "~/components/Notes/QuoteNoteGrid"
-import { QuoteNote } from "~/models/quote.server"
 
 
 export const loader = async ({params, request}: any) => {
     const userId = await requireUserId(request);
+    const url = new URL(request.url)
+    console.log(url)
 
     const data = await prisma.book.findUnique({
         where: { id: params.bookId },
@@ -72,7 +72,7 @@ export const loader = async ({params, request}: any) => {
         }
     })
 
-    return {data, tags, user}
+    return {data, tags, user, url}
 }
 
 export const action = async ({request}: any) => {
@@ -127,8 +127,10 @@ export const action = async ({request}: any) => {
 
 export default function BookIdRoute() {
     const params = useParams()
+    // console.log('params', params)
     
     const data = useLoaderData()
+    // console.log(data)
     let transition = useTransition()
     let isAdding = 
         transition.state === "submitting" &&
@@ -150,7 +152,7 @@ export default function BookIdRoute() {
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
     }
-
+    
     return (
         <div className="flex flex-col pt-6 md:pt-10 max-w-6xl">
             <PageTitle children={book.title} btn={<EditBookBtn  data={data} />}/>
@@ -169,22 +171,26 @@ export default function BookIdRoute() {
                         />
                     </label>
                 </div>
-                <div className="flex gap-4 pb-6 mb-6 overflow-auto scrollbar-thin scrollbar-track-stone-800 scrollbar-thumb-stone-700">
-                    <Link to={`/books/${data.data.id}`} className={`items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer  ${params.tagId ? 'bg-stone-800 text-stone-400' : 'bg-stone-300 text-stone-800'}`}>
-                        <p  className="">
-                            all
-                        </p>
-                    </Link>
-                    {data.tags?.map((tag: Tag) => (
-                        <NavLink to={`/books/${data.data.id}/tags/${tag.body}`} key={tag.body} className={({ isActive }) =>
-                        ` items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer hover:bg-stone-700 ${isActive ? "bg-stone-300 text-stone-800 hover:bg-stone-300 " : "bg-stone-800"}`
-                        }>
-                            <div >
-                                <p  className="">{tag.body}</p>
-                            </div>
-                        </NavLink>
-                    ))}
-                </div>
+                {data.data.quote.length > 0 ?
+                    <div className="flex gap-4 pb-6 mb-6 overflow-auto scrollbar-thin scrollbar-track-stone-800 scrollbar-thumb-stone-700">
+                        <Link to={`/books/${data.data.id}`} className={`items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer   ${params.tagId ? 'bg-stone-800 text-stone-400' : 'bg-stone-300 text-stone-800'}`}>
+                            <p  className="">
+                                all
+                            </p>
+                        </Link>
+                        {data.tags?.map((tag: Tag) => (
+                            <NavLink to={`/books/${data.data.id}/tags/${tag.body}`} key={tag.body} className={({ isActive }) =>
+                            ` items-center flex text-xs font-semibold px-4 py-2 rounded-xl  whitespace-nowrap cursor-pointer hover:bg-stone-700 ${isActive ? "bg-stone-300 text-stone-800 hover:bg-stone-300 " : "bg-stone-800"}`
+                            }>
+                                <div >
+                                    <p  className="">{tag.body}</p>
+                                </div>
+                            </NavLink>
+                        ))}
+                    </div>
+                    :
+                    null
+                }
             </div>
             <div className="grid grid-cols-1 md:flex gap-6 ">
                 <div>

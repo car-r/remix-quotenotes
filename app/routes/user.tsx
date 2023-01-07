@@ -14,8 +14,8 @@ export const loader: LoaderFunction = async ({request}) => {
 }
 
 export default function User() {
-    const user = useLoaderData()
-    console.log(user)
+    // const user = useLoaderData()
+
     return (
         <AppLayout>
             <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">

@@ -12,7 +12,7 @@ export const loader: LoaderFunction = async ({request}) => {
 
 export default function User() {
     const user = useLoaderData()
-    console.log(user)
+
     return(
         <div className="flex flex-col gap-1 bg-stone-800 p-4 rounded-lg max-w-2xl">
             <div className="flex flex-col py-3 border-b border-stone-700 w-full">
