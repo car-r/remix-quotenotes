@@ -10,7 +10,7 @@ import QuoteSmallCard from "~/components/Quotes/QuoteSmallCard";
 import FirstQuoteBtn from "~/components/Buttons/FirstQuoteBtn";
 import AddQuoteBtn from "~/components/Buttons/AddQuoteBtn";
 import BookHomeCard from "~/components/Books/BookHomeCard";
-import AddBookBtn from "~/components/Buttons/AddBookBtn";
+// import AddBookBtn from "~/components/Buttons/AddBookBtn";
 import AddAuthorBtn from "~/components/Buttons/AddAuthorBtn";
 import AuthorHomeCard from "~/components/Authors/AuthorHomeCard";
 import AppLayout from "~/components/Layouts/AppLayout";
