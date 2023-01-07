@@ -134,7 +134,7 @@ export default function NewQuote() {
                     <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Quote
+                            Quote *
                         </label>
                         <textarea
                         name="body"
@@ -147,7 +147,7 @@ export default function NewQuote() {
                     </div>
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Author
+                            Author *
                         </label>
                         <select name="authorId" className="bg-stone-700 rounded-sm p-1" onChange={(e) => onAuthorChange}>
                             {data.data.authors.map((author: Author) => (
@@ -157,7 +157,7 @@ export default function NewQuote() {
                     </div>
                     <div className="flex flex-col gap-1 pb-2">
                         <label className="text-sm font-semibold tracking-wider uppercase">
-                            Book
+                            Book *
                         </label>
                         <select name="bookId" className="bg-stone-700 rounded-sm p-1">
                             {data.data.book.filter((book: Book) => book.authorId === authorId).map((book: Book) =>(
