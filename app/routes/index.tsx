@@ -78,7 +78,7 @@ export default function Index() {
     <>
       <AppLayout>
       <div className="flex flex-col pt-6 md:pt-10 max-w-5xl">
-        <PageTitle children={`Dashboard`}/>
+        <PageTitle children={`Library`}/>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-28">
           <Link to="/quotes">
             <div className="border-2 border-stone-800 p-4 rounded-xl hover:ring-2 hover:ring-blue-400 hover:text-stone-100">

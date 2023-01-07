@@ -38,7 +38,17 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     // Action to update quote
     if(form.get('_method') === 'update') {
-        const body = quoteBody.trim()
+        let body = quoteBody.trim()
+
+        const isWrappedInQuotes = new RegExp('/^"(.*)"$/')
+
+        const validateisWrappedInQuotes = (value: string) => {
+            if (!isWrappedInQuotes.test(value)) {
+                return body = body.slice(1, -1 )
+            }
+        }
+    
+        validateisWrappedInQuotes(body)
 
         const errors = {
             body: ''

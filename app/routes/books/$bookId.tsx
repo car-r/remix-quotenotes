@@ -89,7 +89,18 @@ export const action = async ({request}: any) => {
 
     // Action to create Quote
     if(form.get('_method') === 'create') {
-        const body = quoteBody.trim()
+        let body = quoteBody.trim()
+
+        const isWrappedInQuotes = new RegExp('/^"(.*)"$/')
+
+        const validateisWrappedInQuotes = (value: string) => {
+            if (!isWrappedInQuotes.test(value)) {
+                return body = body.slice(1, -1 )
+            }
+        }
+    
+        validateisWrappedInQuotes(body)
+
         const errors = {
             body: '',
             pricingPlan: ''
@@ -103,6 +114,8 @@ export const action = async ({request}: any) => {
             }
         }
         validatePricingPlan()
+
+
 
         function checkBody(body: any) {
             if(!body || body.length < 4) {
