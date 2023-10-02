@@ -116,7 +116,6 @@ export const action = async ({request}: any) => {
         validatePricingPlan()
 
 
-
         function checkBody(body: any) {
             if(!body || body.length < 4) {
                 return errors.body = `Quote too short`
